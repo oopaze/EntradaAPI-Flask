@@ -71,6 +71,9 @@ def create_entrada():
 def entrada_deletar(id):
     dados = {}
 
+    db.session.delete(Entrada.query.all())
+    db.session.commit()
+
     try:
         entrada = Entrada.query.get(id)
 
@@ -85,4 +88,4 @@ def entrada_deletar(id):
         return jsonify(dados)
     except: 
         dados["mensagem"] = "Impossivel excluir entrada, verificar dados."
-        return jsonify(dados)
+        return jsonify(dados), 400
