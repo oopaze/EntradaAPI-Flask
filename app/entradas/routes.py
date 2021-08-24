@@ -47,7 +47,6 @@ def create_entrada():
     entrada_schema = EntradaSchema()
     
     try:
-        print(request.json)
         entrada = Entrada(**request.json)
         
         db.session.add(entrada)
@@ -78,12 +77,12 @@ def entrada_deletar(id):
         db.session.delete(entrada)
         db.session.commit()
 
-        autorschema = EntradaSchema()
+        entradaschema = EntradaSchema()
         
-        dados["data"] = autorschema.dump(entrada)
-        dados["mensagem"] = "Autor deletado com sucesso!"
+        dados["data"] = entradaschema.dump(entrada)
+        dados["mensagem"] = "Entrada deletado com sucesso!"
 
         return jsonify(dados)
     except: 
-        dados["mensagem"] = "Impossivel excluir autor, verificar dados."
+        dados["mensagem"] = "Impossivel excluir entrada, verificar dados."
         return jsonify(dados)
