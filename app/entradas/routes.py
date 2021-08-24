@@ -70,10 +70,7 @@ def create_entrada():
 @entrada.route("/<int:id>/",methods=['DELETE'])
 def entrada_deletar(id):
     dados = {}
-
-    db.session.delete(Entrada.query.all())
-    db.session.commit()
-
+    
     try:
         entrada = Entrada.query.get(id)
 
